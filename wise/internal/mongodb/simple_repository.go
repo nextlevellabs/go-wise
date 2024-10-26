@@ -30,7 +30,7 @@ func NewSimpleRepository[M any](col *mongo.Collection, opts ...RepositoryOptions
 	return repo, nil
 }
 
-func (r *simpleRepository[M]) Find(ctx context.Context, id string) (M, error) {
+func (r *simpleRepository[M]) FindOne(ctx context.Context, id string) (M, error) {
 	m := new(M)
 
 	err := r.collection.FindOne(ctx, bson.M{"_id": id}).Decode(&m)
@@ -45,7 +45,7 @@ func (r *simpleRepository[M]) FindAll(ctx context.Context) ([]M, error) {
 	return r.search(ctx, bson.M{})
 }
 
-func (r *simpleRepository[M]) FindMany(ctx context.Context, ids []string) ([]M, error) {
+func (r *simpleRepository[M]) Find(ctx context.Context, ids []string) ([]M, error) {
 	return r.search(ctx, bson.M{"_id": bson.M{"$in": ids}})
 }
 
@@ -81,7 +81,7 @@ func (r *simpleRepository[M]) Upsert(ctx context.Context, id string, m M) error 
 }
 
 func (r *simpleRepository[M]) Delete(ctx context.Context, id string) (M, error) {
-	m, err := r.Find(ctx, id)
+	m, err := r.FindOne(ctx, id)
 	if err != nil {
 		return *new(M), err
 	}

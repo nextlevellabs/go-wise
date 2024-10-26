@@ -3,8 +3,8 @@ package mongodb
 import "context"
 
 type Repository[M any] interface {
-	Find(ctx context.Context, id string) (M, error)
-	FindMany(ctx context.Context, ids []string) ([]M, error)
+	FindOne(ctx context.Context, id string) (M, error)
+	Find(ctx context.Context, ids []string) ([]M, error)
 	FindAll(ctx context.Context) ([]M, error)
 	Search(ctx context.Context, filters map[string][]any, opts ...SearchOptions) ([]M, error)
 

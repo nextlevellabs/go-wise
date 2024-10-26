@@ -33,8 +33,8 @@ func NewRepository[M, D any](col *mongo.Collection, ser Serializer[M, D]) (Repos
 	return repo, nil
 }
 
-func (r *repository[M, D]) Find(ctx context.Context, id string) (M, error) {
-	d, err := r.Repository.Find(ctx, id)
+func (r *repository[M, D]) FindOne(ctx context.Context, id string) (M, error) {
+	d, err := r.Repository.FindOne(ctx, id)
 	if err != nil {
 		return *new(M), err
 	}
@@ -62,8 +62,8 @@ func (r *repository[M, D]) FindAll(ctx context.Context) ([]M, error) {
 	return mm, nil
 }
 
-func (r *repository[M, D]) FindMany(ctx context.Context, ids []string) ([]M, error) {
-	dd, err := r.Repository.FindMany(ctx, ids)
+func (r *repository[M, D]) Find(ctx context.Context, ids []string) ([]M, error) {
+	dd, err := r.Repository.Find(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
