@@ -50,7 +50,7 @@ func (r *simpleRepository[M]) FindMany(ctx context.Context, ids []string) ([]M, 
 }
 
 func (r *simpleRepository[M]) Search(ctx context.Context, filters map[string][]any, opts ...SearchOptions) ([]M, error) {
-	bson, err := r.indexedFields.toBson(filters)
+	bson, err := r.indexedFields.bson(filters)
 	if err != nil {
 		return nil, err
 	}
@@ -63,7 +63,7 @@ func (r *simpleRepository[M]) Search(ctx context.Context, filters map[string][]a
 func (r *simpleRepository[M]) CountDocuments(ctx context.Context, filters map[string][]any) (int64, error) {
 	opts := options.Count()
 
-	bson, err := r.indexedFields.toBson(filters)
+	bson, err := r.indexedFields.bson(filters)
 	if err != nil {
 		return 0, err
 	}
@@ -95,7 +95,7 @@ func (r *simpleRepository[M]) Delete(ctx context.Context, id string) (M, error) 
 }
 
 func (r *simpleRepository[M]) DeleteMany(ctx context.Context, filters map[string][]any) error {
-	mongoFilters, err := r.indexedFields.toBson(filters)
+	mongoFilters, err := r.indexedFields.bson(filters)
 	if err != nil {
 		return err
 	}

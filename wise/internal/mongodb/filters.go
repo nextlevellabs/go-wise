@@ -10,7 +10,7 @@ import (
 
 type indexedFields map[string]struct{}
 
-func (f indexedFields) toBson(input map[string][]any) (bson.M, error) {
+func (f indexedFields) bson(input map[string][]any) (bson.M, error) {
 	if len(input) == 0 {
 		return bson.M{}, nil
 	}
