@@ -1,7 +1,7 @@
 package wise
 
 import (
-	"github.com/literalog/go-wise/wise/internal/mongodb"
+	"github.com/nextlevellabs/go-wise/wise/internal/mongodb"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

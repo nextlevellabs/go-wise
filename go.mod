@@ -1,4 +1,4 @@
-module github.com/literalog/go-wise
+module github.com/nextlevellabs/go-wise
 
 go 1.21.5
 

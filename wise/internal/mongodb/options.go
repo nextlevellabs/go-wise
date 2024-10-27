@@ -1,7 +1,7 @@
 package mongodb
 
 import (
-	"github.com/literalog/go-wise/wise/internal/filters"
+	"github.com/nextlevellabs/go-wise/wise/internal/filters"
 )
 
 type RepositoryOptions func(*repositoryOptions)
