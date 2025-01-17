@@ -1,4 +1,4 @@
-package mongodb
+package wise
 
 import "github.com/nextlevellabs/go-wise/wise/internal/mongodb"
 
