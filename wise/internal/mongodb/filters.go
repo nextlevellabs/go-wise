@@ -20,7 +20,7 @@ func (f indexedFields) bson(input map[string][]any) (bson.M, error) {
 	for key, values := range input {
 		keyPrefix := strings.Split(key, ".")[0]
 		_, ok := f[keyPrefix]
-		if !ok {
+		if !ok && !strings.HasPrefix(key, "$") {
 			continue
 		}
 
